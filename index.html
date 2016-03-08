@@ -26,30 +26,21 @@
 		//identificador del webMap de ArcGIS online que se quiere cargar
 		webmapId = "c28103b6cc3547aeb63c3fe4c7184592";
 	    
+	    //creamos el mapa a partir del método createMap de arcgisUtils
+	    //cuando se recibe la respuesta se ejecuta la función anónima ahí definida
 	    defResponse = arcgisUtils.createMap(webmapId, "mapDiv").then(function(response){
 
+	    	//se crea el widget LayerList
+	    		//el mapa se obtiene de la variable response
+	    		//las capas las obtenemos usando el método de getLayerList y como parámetro la respuesta
 	        var myWidget = new LayerList({
 	           map: response.map,
 	           layers: arcgisUtils.getLayerList(response) 
 	        },"layerList");
 
+	        //se inicializa el widget
 	        myWidget.startup();
-
 	    });
-
-	    /*var map;
-	    defResponse.then(function (response){
-	    	map = response.map;
-	    }, function (error){
-	    	deferred.cancel();
-	    })*/
-
-	   // map.showZoomSlider();
-	    /*map = new Map("mapDiv", {
-	    	center: [-56.049, 38.485],
-	    	zoom: 3,
-	    	basemap: "osm"
-	  	});*/
 	  });
 	</script>
 	</head>
